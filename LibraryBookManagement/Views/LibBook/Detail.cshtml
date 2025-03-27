@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model BookViewModel
+
+<h2>Library Members</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>AvailabilityStatus</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.Books != null)
+        {
+            @foreach (var member in ViewBag.Books)
+            {
+                <tr>
+                    <td>@member.Id</td>
+                    <td>@member.Title</td>
+                    <td>@member.Author</td>
+                    <td>@member.Category</td>
+                    <td>
+						@member.AvailabilityStatus
+                    </td>
+                    <td>
+                        <a asp-action="Edits" asp-route-id="@member.Id" class="btn btn-warning">Edits</a>
+
+
+                        <form asp-action="Delete" method="post" onsubmit="return confirm('Are you sure you want to delete this member?');">
+                            <input type="hidden" name="id" value="@member.Id" />
+                            <button type="submit" style="background-color:chartreuse;border-radius:20px;">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">No members found.</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Creates" class="btn btn-primary">Create</a>
+

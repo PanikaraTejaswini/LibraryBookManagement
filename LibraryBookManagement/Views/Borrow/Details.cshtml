@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Borrowed
+
+<h2>Borrow Details</h2>
+
+<div>
+    <h4>Book: @Model.Book.Title</h4>
+    <p><strong>Author:</strong> @Model.Book.Author</p>
+    <p><strong>Category:</strong> @Model.Book.Category</p>
+    <p><strong>Member:</strong> @Model.Member.Name</p>
+    <p><strong>Email:</strong> @Model.Member.Email</p>
+    <p><strong>Membership Date:</strong> @Model.Member.MemberShipData</p>
+    <p><strong>Borrowed Date:</strong> @Model.BorrowedDate.ToShortDateString()</p>
+    <p><strong>Return Date:</strong> @(Model.ReturnDate == default(DateTime) ? "Not Returned" : Model.ReturnDate.ToShortDateString())</p>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">Back to Borrowed List</a>
+
+

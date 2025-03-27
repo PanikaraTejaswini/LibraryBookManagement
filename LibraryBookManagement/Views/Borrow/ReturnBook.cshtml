@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Borrowed>
+
+<h2>Return a Book</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Member Name</th>
+            <th>BorrowedDate</th>
+            <th>ReturnDate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var borrow in Model)
+        {
+            <tr>
+                <td>@borrow.Book.Title</td>
+                <td>@borrow.Member.Name</td>
+                <td>@borrow.BorrowedDate.ToShortDateString()</td>
+                <td>
+                    <form asp-action="ReturnBookConfirmed" method="post">
+                        <input type="hidden" name="id" value="@borrow.Id" />
+                        <button type="submit" class="btn btn-warning">Return</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Back to Borrowed List</a>
+
