@@ -28,22 +28,6 @@ namespace LibraryBookManagement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Borroweds",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MemberId = table.Column<int>(type: "int", nullable: false),
-                    BookId = table.Column<int>(type: "int", nullable: false),
-                    BorrowedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Borroweds", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Members",
                 columns: table => new
                 {
@@ -59,6 +43,44 @@ namespace LibraryBookManagement.Migrations
                     table.PrimaryKey("PK_Members", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Borroweds",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberId = table.Column<int>(type: "int", nullable: false),
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    BorrowedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Borroweds", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Borroweds_Books_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Books",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Borroweds_Members_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "Members",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Borroweds_BookId",
+                table: "Borroweds",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Borroweds_MemberId",
+                table: "Borroweds",
+                column: "MemberId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Members_Email",
                 table: "Members",
@@ -70,10 +92,10 @@ namespace LibraryBookManagement.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "Borroweds");
 
             migrationBuilder.DropTable(
-                name: "Borroweds");
+                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "Members");

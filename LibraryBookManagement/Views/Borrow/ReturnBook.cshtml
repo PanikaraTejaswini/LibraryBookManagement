@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model IEnumerable<Borrowed>
+﻿@model IEnumerable<Borrowed>
 
 <h2>Return a Book</h2>
 
@@ -10,8 +7,8 @@
         <tr>
             <th>Book Title</th>
             <th>Member Name</th>
-            <th>BorrowedDate</th>
-            <th>ReturnDate</th>
+            <th>Borrowed Date</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -20,11 +17,10 @@
             <tr>
                 <td>@borrow.Book.Title</td>
                 <td>@borrow.Member.Name</td>
-                <td>@borrow.BorrowedDate.ToShortDateString()</td>
+                <td>@borrow.BorrowedDate.ToString("yyyy-MM-dd")</td>
                 <td>
-                    <form asp-action="ReturnBookConfirmed" method="post">
-                        <input type="hidden" name="id" value="@borrow.Id" />
-                        <button type="submit" class="btn btn-warning">Return</button>
+                    <form asp-action="ReturnBookConfirmed" method="post" asp-route-id="@borrow.Id">
+                        <button type="submit" class="btn btn-success">Return</button>
                     </form>
                 </td>
             </tr>
@@ -32,5 +28,4 @@
     </tbody>
 </table>
 
-<a asp-action="Index" class="btn btn-secondary">Back to Borrowed List</a>
-
+<a asp-action="Index" class="btn btn-secondary">Back to Borrowed Books</a>

@@ -14,7 +14,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>MemberShip Data</th>
-            <th>Borrowed Books</th>
+           @* <th>Borrowed Books</th> *@
             
         </tr>
     </thead>
@@ -28,21 +28,21 @@
                     <td>@member.Name</td>
                     <td>@member.Email</td>
                     <td>@member.MemberShipData</td>
-                    <td>
-                        @if (member.BorrowedBooks != null )
-                        {
-                            <ul>
-                                @foreach (var book in member.BorrowedBooks.ToString().Split(','))
-                                {
-                                    <li>@book</li>
-                                }
-                            </ul>
-                        }
-                        else
-                        {
-                            <p>No books borrowed.</p>
-                        }
-                    </td>
+                    @* <td> *@
+                    @*     @if (member.BorrowedBooks != null ) *@
+                    @*     { *@
+                    @*         <ul> *@
+                    @*             @foreach (var book in member.BorrowedBooks.ToString().Split(',')) *@
+                    @*             { *@
+                    @*                 <li>@book</li> *@
+                    @*             } *@
+                    @*         </ul> *@
+                    @*     } *@
+                    @*     else *@
+                    @*     { *@
+                    @*         <p>No books borrowed.</p> *@
+                    @*     } *@
+                    @* </td> *@
                     <td>
                         <a asp-action="Edit" asp-route-id="@member.Id" class="btn btn-warning">Edit</a>
                         

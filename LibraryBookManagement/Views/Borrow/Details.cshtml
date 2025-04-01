@@ -1,22 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@{
+    ViewBag.Title = "Borrow a Book";
+}
 
-@model Borrowed
+<h2>Borrow a Book</h2>
 
-<h2>Borrow Details</h2>
+<form asp-action="BorrowBook" method="post">
+    <div class="form-group">
+        <label for="bookId">Book</label>
+        <select id="bookId" name="bookId" class="form-control">
+            @foreach (var book in ViewBag.Books)
+            {
+                <option value="@book.Id">@book.Title</option>
+            }
+        </select>
+    </div>
 
-<div>
-    <h4>Book: @Model.Book.Title</h4>
-    <p><strong>Author:</strong> @Model.Book.Author</p>
-    <p><strong>Category:</strong> @Model.Book.Category</p>
-    <p><strong>Member:</strong> @Model.Member.Name</p>
-    <p><strong>Email:</strong> @Model.Member.Email</p>
-    <p><strong>Membership Date:</strong> @Model.Member.MemberShipData</p>
-    <p><strong>Borrowed Date:</strong> @Model.BorrowedDate.ToShortDateString()</p>
-    <p><strong>Return Date:</strong> @(Model.ReturnDate == default(DateTime) ? "Not Returned" : Model.ReturnDate.ToShortDateString())</p>
-</div>
+    <div class="form-group">
+        <label for="memberId">Member</label>
+        <select id="memberId" name="memberId" class="form-control">
+            @foreach (var member in ViewBag.Members)
+            {
+                <option value="@member.Id">@member.Name</option>
+            }
+        </select>
+    </div>
 
-<a asp-action="Index" class="btn btn-secondary">Back to Borrowed List</a>
+    <button type="submit" class="btn btn-primary">Borrow</button>
+</form>
 
-
+<a asp-action="Index" class="btn btn-secondary">Back to Borrowed Books</a>

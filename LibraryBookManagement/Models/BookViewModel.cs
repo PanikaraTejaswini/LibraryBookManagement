@@ -10,6 +10,6 @@ namespace LibraryBookManagement.Models
         public string? Author { get; set; }
         [Required]
         public string? Category { get; set; }
-        public Boolean AvailabilityStatus { get; set; }
+        public bool AvailabilityStatus { get; set; }
     }
 }

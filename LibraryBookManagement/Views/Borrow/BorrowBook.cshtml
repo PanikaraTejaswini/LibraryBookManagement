@@ -1,35 +1,29 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-
-@{
-    ViewData["Title"] = "Borrow a Book";
+﻿@{
+    ViewBag.Title = "Borrow a Book";
 }
 
 <h2>Borrow a Book</h2>
 
 <form asp-action="BorrowBook" method="post">
     <div class="form-group">
-        <label>Member</label>
-        <select name="memberId" class="form-control">
-            @foreach (var member in ViewBag.Members)
-            {
-                <option value="@member.Id">@member.Name</option>
-            }
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Book</label>
-        <select name="bookId" class="form-control">
+        <label for="bookId">Book</label>
+        <select id="bookId" name="bookId" class="form-control">
             @foreach (var book in ViewBag.Books)
             {
                 <option value="@book.Id">@book.Title</option>
             }
         </select>
     </div>
-
-    <button type="submit" class="btn btn-success">Borrow</button>
+    <div class="form-group">
+        <label for="memberId">Member</label>
+        <select id="memberId" name="memberId" class="form-control">
+            @foreach (var member in ViewBag.Members)
+            {
+                <option value="@member.Id">@member.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Borrow</button>
 </form>
 
 <a asp-action="Index" class="btn btn-secondary">Back to List</a>

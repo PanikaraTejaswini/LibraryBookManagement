@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LibraryBookManagement.Models.Book> 
+
+<h2>Book Details</h2>
+
+@if (Model.Any()) 
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Availability</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Category</td>
+                    <td>@book.AvailabilityStatus</td>
+                    <td>
+                        <a asp-action="Detail" asp-route-id="@book.Id">View</a> |
+                        <a asp-action="Edits" asp-route-id="@book.Id">Edit</a> |
+                        <form asp-action="Delete" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@book.Id" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No books found.</p>
+}
+
+<a asp-action="Creates" class="btn btn-primary">Add New Book</a>

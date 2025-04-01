@@ -31,10 +31,10 @@ namespace LibraryBookManagement.Controllers
                 person.Name = memberViewModel.Name;
                 person.Email = memberViewModel.Email;
                 person.MemberShipData = memberViewModel.MemberShipData;
-                if (memberViewModel.BorrowedBooks != null && memberViewModel.BorrowedBooks.Any())
-                {
-                    person.BorrowedBooks = string.Join(",", memberViewModel.BorrowedBooks);
-                }
+                //if (memberViewModel.BorrowedBooks != null && memberViewModel.BorrowedBooks.Any())
+                //{
+                //    person.BorrowedBooks = string.Join(",", memberViewModel.BorrowedBooks);
+                //}
 
                 objname.Members.Add(person);
                 await objname.SaveChangesAsync();

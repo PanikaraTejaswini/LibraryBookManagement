@@ -12,9 +12,12 @@ namespace LibraryBookManagement.Models
         [ForeignKey("Book")]
         public int BookId { get; set; }
         public DateTime BorrowedDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         public Book Book { get; set; }
         public Member Member { get; set; }
+      
+
+
 
     }
 }
